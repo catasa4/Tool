@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Alliance Notice Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="/images/logo_mini.png">
+  <link href="./mail.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-1: #4caf50;
+      --primary-3: #2196f3;
+      --neutral: #ccc;
+      --pale-neutral: #1e1e1e;
+      --miku-red: #e57373;
+      --miku-gold: #ffd700;
+    }
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+    .toolbar {
+      margin-bottom: 1rem;
+    }
+    .toolbar button {
+      margin-right: 6px;
+      padding: 6px 12px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .toolbar button:hover {
+      background-color: #444;
+    }
+    h1, h2 {
+      color: var(--miku-gold);
+    }
+    .error {
+      border: 2px solid var(--miku-red) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Alliance Notice Formatter</h1>
+  <p>
+    Use tags like <code>&lt;size=40&gt;</code> and <code>&lt;color=orange&gt;</code> to format text for in-game mail or notices.
+  </p>
+
+  <div class="toolbar">
+    <button onclick="setBold()">Bold</button>
+    <button onclick="setItalic()">Italic</button>
+    <button onclick="setSize(40)">Size 40</button>
+    <button onclick="setColor('orange')">Orange</button>
+    <button onclick="setColor('white')">White</button>
+    <button onclick="copyInput()">Copy</button>
+    <button onclick="undoAction()">Undo</button>
+    <button onclick="redoAction()">Redo</button>
+  </div>
+
+  <textarea id="input" placeholder="Type your formatted notice here...">&lt;size=40&gt;&lt;color=orange&gt;Welcome to the family!&lt;/color&gt;&lt;/size&gt;
+
+&lt;color=white&gt;
+☆ Follow the rules  
+☆ Donate tech daily  
+☆ No attacking in normal zones  
+&lt;/color&gt;</textarea>
+
+  <h2>Preview:</h2>
+  <div id="output" class="notice"></div>
+
+  <script src="./parser.js"></script>
+  <script src="./mail.js"></script>
+</body>
+</html>
