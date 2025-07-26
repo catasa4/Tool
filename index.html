@@ -15,6 +15,16 @@
       --miku-red: #e57373;
       --miku-gold: #ffd700;
     }
+    @font-face {
+      font-family: Burbank;
+      src: url("./fonts/Burbank Big Condensed Medium.otf") format("opentype");
+      font-weight: normal;
+    }
+    @font-face {
+      font-family: Burbank;
+      src: url("./fonts/Burbank Big Condensed Black.otf") format("opentype");
+      font-weight: bold;
+    }
     body {
       font-family: sans-serif;
       margin: 2rem;
@@ -23,9 +33,11 @@
     }
     .toolbar {
       margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
     .toolbar button {
-      margin-right: 6px;
       padding: 6px 12px;
       border: none;
       background-color: #333;
@@ -35,6 +47,9 @@
     }
     .toolbar button:hover {
       background-color: #444;
+    }
+    .toolbar button.active {
+      background-color: var(--primary-3);
     }
     h1, h2 {
       color: var(--miku-gold);
@@ -48,13 +63,13 @@
 
   <h1>Alliance Notice Formatter</h1>
   <p>
-    Use tags like <code>&lt;size=40&gt;</code> and <code>&lt;color=orange&gt;</code> to format text for in-game mail or notices.
+    Use tags like <code>&lt;size=50&gt;</code> and <code>&lt;color=orange&gt;</code> to format text for in-game mail or notices.
   </p>
 
   <div class="toolbar">
     <button onclick="setBold()">Bold</button>
     <button onclick="setItalic()">Italic</button>
-    <button onclick="setSize(40)">Size 40</button>
+    <button onclick="setSize(50)">Size 50</button>
     <button onclick="setColor('orange')">Orange</button>
     <button onclick="setColor('white')">White</button>
     <button onclick="copyInput()">Copy</button>
@@ -62,15 +77,25 @@
     <button onclick="redoAction()">Redo</button>
   </div>
 
-  <textarea id="input" placeholder="Type your formatted notice here...">&lt;size=40&gt;&lt;color=orange&gt;Welcome to the alliance!&lt;/color&gt;&lt;/size&gt;
+  <textarea id="input" placeholder="Type your formatted notice here...">&lt;size=50&gt;&lt;color=orange&gt;Welcome to the alliance!&lt;/color&gt;&lt;/size&gt;
 
 &lt;color=white&gt;
-- Follow the rules  
-- Donate tech daily  
-- No attacking gatherers  
-&lt;/color&gt;</textarea>
+- Follow the &lt;i&gt;rules&lt;/i&gt;
+- Donate tech &lt;b>daily&lt;/b&gt;
+- No attacking &lt;color=#ff0000>gatherers&lt;/color&gt;
+&lt;/color&gt;
+
+And this is the default text color if you didn't set it.
+</textarea>
 
   <h2>Preview:</h2>
+
+  <div class="toolbar" id="preview-toolbar">
+    <button onclick="changePreviewColor(event, 'notice')" class="active">Description</button>
+    <button onclick="changePreviewColor(event, 'announcement')">Announcement</button>
+    <button onclick="changePreviewColor(event, 'alert')">In-chat alert</button>
+    <button onclick="changePreviewColor(event, 'mail')">Mail</button>
+  </div>
   <div id="output" class="notice"></div>
 
   <script src="./parser.js"></script>

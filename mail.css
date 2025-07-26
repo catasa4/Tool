@@ -66,20 +66,49 @@ ul.template-list {
   font-size: 1rem;
   border: 0.1rem solid var(--neutral);
   background-color: var(--pale-neutral);
+  font-family: "Burbank", sans-serif;
+  font-weight: normal;
+}
+
+.output-example.announcement,
+#output.announcement {
+  background-color: #c9e4f9;
+  color: white;
+}
+
+@supports (-webkit-text-stroke: 1px black) and (paint-order: stroke fill) {
+  #output.announcement {
+    -webkit-text-stroke: 2px black;
+    paint-order: stroke fill;
+  }
+}
+
+@supports not (-webkit-text-stroke: 1px black) {
+  #output.announcement {
+    text-shadow: 1px 1px black;
+  }
 }
 
 .output-example.mail,
 #output.mail {
-  background-color: #c6d4e1;
-  color: #60646f;
-  font-size: 16px;
+  background-color: #dbecf8;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  color: #444344;
+}
+
+.output-example.alert,
+#output.alert {
+  background-color: #ca632c;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  color: white;
 }
 
 .output-example.notice,
 #output.notice {
-  background-color: #283b5c;
-  color: #7c9fdf;
-  font-size: 12px;
+  background-color: #003666;
+  color: #70a3e3;
 }
 
 #output.error:before {
