@@ -26,8 +26,9 @@ function elementToHtml(element) {
   if (element.type === 'size') {
     const inner = arrayToHtml(element.inner);
     if (element.value === null) return inner;
-    const size = Math.floor(element.value * 4 / 10);
-    return `<span style="font-size:${size}px">` + inner + '</span>';
+    // 44 is in-game approximate base size
+    const size = element.value / 44;
+    return `<span style="font-size:${size}em">` + inner + '</span>';
   }
   if (element.type === 'line-break') {
     return '<br>';
