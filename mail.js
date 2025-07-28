@@ -482,3 +482,18 @@ function handleCutEvent(e) {
   });
   redoStack.length = 0;
 }
+
+/**
+ * Change preview background color
+ * @param {HTMLButtonElement} event
+ * @param {"notice"|"mail"|"alert"|"announcement"} previewType
+ */
+function changePreviewColor(event, previewType) {
+  document.querySelectorAll('#preview-toolbar button').forEach((el) => {
+    el.classList.remove('active');
+  });
+
+  event.currentTarget.classList.add('active');
+  
+  previewElement.className = previewType
+}
