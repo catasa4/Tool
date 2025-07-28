@@ -68,9 +68,9 @@ ul.template-list {
   background-color: var(--pale-neutral);
   font-family: "Burbank", sans-serif;
   font-weight: normal;
+  white-space: pre-wrap;
 }
 
-.output-example.announcement,
 #output.announcement {
   background-color: #c9e4f9;
   color: white;
@@ -89,26 +89,24 @@ ul.template-list {
   }
 }
 
-.output-example.mail,
 #output.mail {
   background-color: #dbecf8;
   font-family: sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #444344;
 }
 
-.output-example.alert,
 #output.alert {
   background-color: #ca632c;
   font-family: sans-serif;
-  font-size: 0.8rem;
-  color: white;
+  font-size: 0.9rem;
+  color: #fff;
 }
 
-.output-example.notice,
 #output.notice {
   background-color: #003666;
   color: #70a3e3;
+  font-family: "Burbank", sans-serif;
 }
 
 #output.error:before {
