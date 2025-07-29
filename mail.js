@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
   if (navigator.userAgent.toLowerCase().indexOf('mac os') !== -1) {
     // Silent Mac Undo/Redo commands
     bodyElement.addEventListener('keydown', (e) => {
-      if ((e.metaKey) && (e.key == 'z')) e.preventDefault();
+      if (e.metaKey && e.key == 'z') e.preventDefault();
     });
 
     // Process undo/redo shortcuts
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
   } else {
     // Silent Undo/Redo commands
     bodyElement.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey) && ((e.key == 'z')||(e.key == 'y'))) e.preventDefault();
+      if (e.ctrlKey && (e.key == 'z' || e.key == 'y')) e.preventDefault();
     });
 
     // Process undo/redo shortcuts
@@ -125,7 +125,7 @@ function startPreviewCooldown() {
   } else {
     previewPending = true;
     inputElement.classList.add('preview-pending');
-  };
+  }
   previewDelay = setTimeout(updatePreview, 800);
 }
 
@@ -217,10 +217,11 @@ function undoAction(chainedUndo) {
 
   const data = undoStack.pop();
   inputElement.setRangeText(
-      data.replacedText,
-      data.startPos,
-      data.endPos,
-      data.selectionMode);
+    data.replacedText,
+    data.startPos,
+    data.endPos,
+    data.selectionMode
+  );
 
   inputElement.focus();
 
@@ -246,10 +247,10 @@ function redoAction() {
   if (redoStack.length === 0) return;
   const data = redoStack.pop();
   inputElement.setRangeText(
-      data.replacedText,
-      data.startPos,
-      data.endPos,
-      data.selectionMode,
+    data.replacedText,
+    data.startPos,
+    data.endPos,
+    data.selectionMode
   );
 
   inputElement.focus();
@@ -274,8 +275,8 @@ function handleSectionChange(e) {
  */
 function getSelectionText() {
   return inputElement.value.slice(
-      inputElement.selectionStart,
-      inputElement.selectionEnd,
+    inputElement.selectionStart,
+    inputElement.selectionEnd
   );
 }
 
@@ -363,8 +364,8 @@ function handleChangeEvent(e) {
       if (undoStack.length) {
         const prevUndo = undoStack[undoStack.length - 1];
         if (
-          (prevUndo.inputType === 'deleteByDrag') &&
-          (prevUndo.replacedText === inserted)
+          prevUndo.inputType === 'deleteByDrag' &&
+          prevUndo.replacedText === inserted
         ) {
           chained = true;
         }
@@ -413,16 +414,9 @@ function handleChangeEvent(e) {
         });
         redoStack.length = 0;
         return;
-      };
+      }
     }
-  };
-}
-
-/**
- * Process input event related to text deletion
- * @param {InputEvent} e
- */
-function processDeletionEvent(e) {
+  }
 }
 
 /**
@@ -434,14 +428,14 @@ function beforeInputChange(e) {
     switch (e.inputType) {
       case 'deleteContentBackward':
         selectedText = inputElement.value.slice(
-            inputElement.selectionStart - 1,
-            inputElement.selectionEnd,
+          inputElement.selectionStart - 1,
+          inputElement.selectionEnd
         );
         return;
       case 'deleteContentForward':
         selectedText = inputElement.value.slice(
-            inputElement.selectionStart,
-            inputElement.selectionEnd + 1,
+          inputElement.selectionStart,
+          inputElement.selectionEnd + 1
         );
         return;
     }
@@ -494,6 +488,7 @@ function changePreviewColor(event, previewType) {
   });
 
   event.currentTarget.classList.add('active');
-  
-  previewElement.className = previewType
+
+  previewElement.classList.remove('notice', 'mail', 'alert', 'announcement');
+  previewElement.classList.add(previewType);
 }
