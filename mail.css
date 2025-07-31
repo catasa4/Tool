@@ -69,6 +69,7 @@ ul.template-list {
   font-family: "Burbank", sans-serif;
   font-weight: normal;
   white-space: pre-wrap;
+  position: relative;
 }
 
 #output.announcement {
@@ -118,4 +119,8 @@ ul.template-list {
   background-color: var(--miku-gold);
   color: var(--miku-red);
   border: 0.1rem solid var(--miku-red);
+
+  font-family: sans-serif;
+  font-size: 1rem;
+  -webkit-text-stroke: 0;
 }
